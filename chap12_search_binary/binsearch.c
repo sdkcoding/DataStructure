@@ -58,6 +58,10 @@ int main()
 		list[i] = i;
 	}
 
+	for (i = 0; i < MAX_SIZE; i++) {
+		list[i] = i;
+	}
+
 	start = (int)clock();
 	resultIndex = sorted_seq_search(34, 0 , MAX_SIZE-1);
 	printf("%0.5f\n", (float)(clock() - start) / CLOCKS_PER_SEC);
