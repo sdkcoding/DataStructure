@@ -100,7 +100,7 @@ avl_add(struct avl_node **root, int new_key)
 		*root = rebalance(root);
 	}
 	else if( new_key > (*root)->data ){
-(*root)->right_child=avl_add(&((*root)->right_child), 				new_key);
+(*root)->right_child=avl_add(&((*root)->right_child), new_key);
 		(*root) = rebalance(root);
 	}
 	else{
