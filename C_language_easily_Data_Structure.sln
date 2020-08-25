@@ -141,6 +141,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap07_Tree_Tree_Bst_Recurs
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap12_sequential_search", "chap12_sequential_search\chap12_sequential_search.vcxproj", "{13293302-0FF6-4C5B-934A-F46BCBFB0E86}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap12_draw_tree_hor", "chap12_draw_tree_hor\chap12_draw_tree_hor.vcxproj", "{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -701,6 +703,14 @@ Global
 		{13293302-0FF6-4C5B-934A-F46BCBFB0E86}.Release|x64.Build.0 = Release|x64
 		{13293302-0FF6-4C5B-934A-F46BCBFB0E86}.Release|x86.ActiveCfg = Release|Win32
 		{13293302-0FF6-4C5B-934A-F46BCBFB0E86}.Release|x86.Build.0 = Release|Win32
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Debug|x64.ActiveCfg = Debug|x64
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Debug|x64.Build.0 = Debug|x64
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Debug|x86.ActiveCfg = Debug|Win32
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Debug|x86.Build.0 = Debug|Win32
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x64.ActiveCfg = Release|x64
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x64.Build.0 = Release|x64
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x86.ActiveCfg = Release|Win32
+		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

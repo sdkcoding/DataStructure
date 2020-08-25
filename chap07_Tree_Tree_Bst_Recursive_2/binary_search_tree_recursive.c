@@ -81,7 +81,7 @@ Node* FindMinNode(Node* tree)
 	else
 		return FindMinNode(tree->left);
 }
-Node* avl_remove(Node* tree, int data)
+Node* RemoveNode(Node* tree, int data)
 {
 	// TODO:
 	Node* tempNode;
@@ -90,9 +90,9 @@ Node* avl_remove(Node* tree, int data)
 		return NULL;
 
 	if (tree->data > data)
-		tree->left = avl_remove(tree->left, data);
+		tree->left = RemoveNode(tree->left, data);
 	else if (tree->data < data)
-		tree->right = avl_remove(tree->right, data);
+		tree->right = RemoveNode(tree->right, data);
 	else
 	{
 		if (tree->left != NULL && tree->right != NULL)
@@ -100,9 +100,9 @@ Node* avl_remove(Node* tree, int data)
 #if (REMOVE_TYPE==RIGHT_LEFTMOST)
 			tempNode = FindMinNode(tree->right);
 			tree->data = tempNode->data;
-			tree->right = avl_remove(tree->right, tempNode->data);
+			tree->right = RemoveNode(tree->right, tempNode->data);
 #else
-			tempNode = FindMinNode(tree->left);
+			tempNode = FindMaxNode(tree->left);
 			tree->data = tempNode->data;
 			tree->left = RemoveNode(tree->left, tempNode->data);
 #endif
@@ -163,7 +163,7 @@ void main(void)
 		if (findNode != NULL)
 		{
 			printf("해당 노드를 찾았습니다. 노드를 제거합니다. 노드의 위치는 %x 입니다.\n", findNode);
-			tree = avl_remove(tree, input);
+			tree = RemoveNode(tree, input);
 		}
 		else
 			printf("노드를 찾을 수 없습니다.\n");
