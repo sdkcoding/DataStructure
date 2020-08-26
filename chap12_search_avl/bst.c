@@ -146,7 +146,7 @@ AVL_NODE* avl_findMinNode(AVL_NODE* tree)
 		return avl_findMinNode(tree->left_child);
 }
 
-AVL_NODE* avl_remove(AVL_NODE* tree, int data)
+AVL_NODE* avl_remove(AVL_NODE** tree, int data)
 {
 	// TODO:
 	AVL_NODE* tempNode;
@@ -154,38 +154,43 @@ AVL_NODE* avl_remove(AVL_NODE* tree, int data)
 	if (tree == NULL)
 		return NULL;
 
-	if (tree->data > data)
-		tree->left_child = avl_remove(tree->left_child, data);
-	else if (tree->data < data)
-		tree->right_child = avl_remove(tree->right_child, data);
+	if ((*tree)->data > data) {
+		(*tree)->left_child = avl_remove(&((*tree)->left_child), data);
+		(*tree) = rebalance(tree);
+	}
+	else if ((*tree)->data < data) {
+		(*tree)->right_child = avl_remove(&((*tree)->right_child), data);
+		(*tree) = rebalance(tree);
+	}
 	else
 	{
-		if (tree->left_child != NULL && tree->right_child != NULL)
+		if ((*tree)->left_child != NULL && (*tree)->right_child != NULL)
 		{
 #if (REMOVE_TYPE==RIGHT_LEFTMOST)
-			tempNode = avl_findMinNode(tree->right_child);
-			tree->data = tempNode->data;
-			tree->right_child = avl_remove(tree->right_child, tempNode->data);
+			tempNode = avl_findMinNode((*tree)->right_child);
+			(*tree)->data = tempNode->data;
+			(*tree)->right_child = avl_remove(&((*tree)->right_child), tempNode->data);
 #else
-			tempNode = avl_findMaxNode(tree->left_child);
-			tree->data = tempNode->data;
-			tree->left_child = avl_remove(tree->left_child, tempNode->data);
+			tempNode = avl_findMaxNode((*tree)->left_child);
+			(*tree)->data = tempNode->data;
+			(*tree)->left_child = avl_remove(&((*tree)->left_child), tempNode->data);
 #endif
+			(*tree) = rebalance(tree);
 		}
 		else
 		{
-			tempNode = tree;
-			if (tree->left_child == NULL && tree->right_child != NULL)
-				tree = tree->right_child;
-			else if (tree->left_child != NULL && tree->right_child == NULL)
-				tree = tree->left_child;
+			tempNode = (*tree);
+			if ((*tree)->left_child == NULL && (*tree)->right_child != NULL)
+				(*tree) = (*tree)->right_child;
+			else if ((*tree)->left_child != NULL && (*tree)->right_child == NULL)
+				(*tree) = (*tree)->left_child;
 			else
-				tree = NULL;
+				(*tree) = NULL;
 			free(tempNode);
 		}
 	}
 
-	return tree;
+	return (*tree);
 }
 
 void diff_tree(AVL_NODE* tree) {
@@ -270,17 +275,32 @@ void draw_tree_hor(AVL_NODE* tree)
 	printf("\n");
 }
 
+#define	E	50
+#define	D	20
 AVL_NODE* root;
 
-void main()
+int main(void)
 {
 	srand((int)time(NULL));
-	int data[100] = { 0 };
+	int data[E] = { 0 };
 	int random;
-	for (int i = 0; i < 100; ) {
-		random = rand() % 100;	// 0 ~ 99
+	for (int i = 0; i < E; ) {
+		random = rand() % E;	// 0 ~ E-1
 		if (!data[random]) {
 			avl_add(&root, random + 1);
+			data[random] = 1;
+			i++;
+		}
+	}
+
+	for (int i = 0; i < E; i++) {
+		data[i] = 0;
+	}
+
+	for (int i = 0; i < D; ) {
+		random = rand() % E;	// 0 ~ E-1
+		if (!data[random]) {
+			avl_remove(&root, random + 1);
 			data[random] = 1;
 			i++;
 		}
