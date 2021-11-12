@@ -143,6 +143,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap12_sequential_search", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap12_draw_tree_hor", "chap12_draw_tree_hor\chap12_draw_tree_hor.vcxproj", "{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap06_Queue_Queue_Deque_Array", "chap06_Queue_Queue_Deque_Array\chap06_Queue_Queue_Deque_Array.vcxproj", "{62D41306-E054-43BA-94DF-1DF16008FFCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -711,6 +713,14 @@ Global
 		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x64.Build.0 = Release|x64
 		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x86.ActiveCfg = Release|Win32
 		{6C38BEF8-43FB-4C97-A53D-57C3C430DDAD}.Release|x86.Build.0 = Release|Win32
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Debug|x64.ActiveCfg = Debug|x64
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Debug|x64.Build.0 = Debug|x64
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Debug|x86.ActiveCfg = Debug|Win32
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Debug|x86.Build.0 = Debug|Win32
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x64.ActiveCfg = Release|x64
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x64.Build.0 = Release|x64
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x86.ActiveCfg = Release|Win32
+		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
