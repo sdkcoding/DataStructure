@@ -31,10 +31,10 @@ void init(DequeType *dq)
 DlistNode *create_node(DlistNode *llink, element item, 
 				DlistNode *rlink)
 {
-  DlistNode *new_node = (DlistNode *) 
-			malloc(sizeof(DlistNode));
-  if(new_node == NULL)
-		error("메모리 할당 오류");
+  DlistNode *new_node = (DlistNode *) malloc(sizeof(DlistNode));
+  if (new_node == NULL) {
+	  error("메모리 할당 오류");
+  }
   new_node->llink = llink;
   new_node->data = item;
   new_node->rlink = rlink;
@@ -71,7 +71,7 @@ void add_front(DequeType *dq, element item)
 //
 element delete_front(DequeType *dq)
 {
-	element item;
+	element item = 0;
 	DlistNode *removed_node;
 
 	if (is_empty(dq))  error("공백 덱에서 삭제");
@@ -90,7 +90,7 @@ element delete_front(DequeType *dq)
 //
 element delete_rear(DequeType *dq)
 {
-	element item;
+	element item = 0;
 	DlistNode *removed_node;
 
 	if (is_empty(dq))  error("공백 덱에서의 삭제");

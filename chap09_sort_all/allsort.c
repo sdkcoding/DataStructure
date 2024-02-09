@@ -1,41 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_SIZE 11
-#define NAME_SIZE 32
-
-#if 0
-typedef struct {
-	int key;
-	char name[NAME_SIZE];
-} record;
-record list[MAX_SIZE];
-int n;
-
-//
-insertion_sort_record(record list[], int n)
-{
-	int i, j;
-	record current_record;
-	for(i=1; i<n; i++){
-		current_record = list[i];
-		for(j=i-1; j>=0 && list[j].key>current_record.key;j--)
-			list[j+1]=list[j];
-		list[j+1]=current_record;
-	}
-}
-#else
+#define MAX_SIZE 100
+#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
+#define	INSERT_SORT	1
 int list[MAX_SIZE];
 int n;
-#endif
 
-//
-insertion_sort(int list[], int n, int (*f)())
+#if INSERT_SORT
+int ascend(int x, int y)
+{
+	if (x < y) return 1;
+	else return 0;
+}
+int descend(int x, int y)
+{
+	if (x > y) return 1;
+	else return 0;
+}
+void insertion_sort(int list[], int n, int (*f)())
 {
 	int i, j;
 	int key;
 	for(i=1; i<n; i++){
-#if 0
 		int k;
 		// 정렬된 리스트 출력
 		printf("(");
@@ -48,29 +35,29 @@ insertion_sort(int list[], int n, int (*f)())
 		for(k=i;k<n;k++)
 			printf("%d ", list[k]);
 		printf(")\n");
-#endif
 		key = list[i];
 		for(j=i-1; j>=0 && f(list[j],key);j--)
 			list[j+1]=list[j];
 		list[j+1]=key;
 	}
 }
-
-int ascend(int x, int y)
+void main()
 {
-	if( x<y ) return 1;
-	else return 0;
-}
-int descend(int x, int y)
-{
-	if( x>y ) return 1;
-	else return 0;
-}
+	int i;
+	n = MAX_SIZE;
+	for (i = 0; i < n; i++)      	/* 난수 생성 및 출력 */
+		list[i] = rand() % n;/*난수 발생 범위 0~MAX_SIZE*/
 
-
+	insertion_sort(list, n, ascend); /* 삽입정렬 호출 */
+	for (i = 0; i < n; i++)
+		printf("%d ", list[i]);
+	printf("\n");
+	insertion_sort(list, n, descend); /* 삽입정렬 호출 */
+	for (i = 0; i < n; i++)
+		printf("%d ", list[i]);
+}
+#endif
 #if 0
-#define SWAP(x, y, t) ( (t)=(x), (x)=(y), (y)=(t) )
-//
 void selection_sort(int list[], int n)
 {  
 	int i, j, least, temp;
@@ -81,8 +68,8 @@ void selection_sort(int list[], int n)
        SWAP(list[i], list[least], temp); 
 	}
 }
-
-//
+#endif
+#if 0
 void bubble_sort(int list[], int n)
 {  
    int i, j, temp;
@@ -93,9 +80,9 @@ void bubble_sort(int list[], int n)
      		    SWAP(list[j], list[j+1], temp);
    }
 }
-
-//
-inc_insertion_sort(int list[], int first, int last, int gap)
+#endif
+#if 0
+void inc_insertion_sort(int list[], int first, int last, int gap)
 {
 	int i, j, key;
 	for(i=first+gap; i<=last; i=i+gap){
@@ -105,7 +92,7 @@ inc_insertion_sort(int list[], int first, int last, int gap)
 		list[j+gap]=key;
 	}
 }
-//
+
 void shell_sort( int list[], int n )   // n = size
 {
 	int i, gap;
@@ -115,45 +102,8 @@ void shell_sort( int list[], int n )   // n = size
 			inc_insertion_sort(list, i, n-1, gap);
 	}
 }
-
-int sorted[MAX_SIZE];
-
-/* i는 정렬된 왼쪽리스트에 대한 인덱스
-   j는 정렬된 오른쪽리스트에 대한 인덱스
-   k는 정렬될 리스트에 대한 인덱스 */
-void merge(int list[], int left, int mid, int right)
-{  
-   int i, j, k, l;
-   i=left;  j=mid+1;  k=left;
-
-   /* 분할 정렬된 list의 합병 */
-   while(i<=mid && j<=right){
-     if(list[i]<=list[j])
-	    sorted[k++] = list[i++];
-	 else
-	    sorted[k++] = list[j++];
-   }
-   if(i>mid)	/* 남아 있는 레코드의 일괄 복사 */
-	  for(l=j; l<=right; l++)
-  	     sorted[k++] = list[l];
-   else	/* 남아 있는 레코드의 일괄 복사 */
-	  for(l=i; l<=mid; l++)
- 	     sorted[k++] = list[l];
-   /* 배열 sorted[]의 리스트를 배열 list[]로 재복사 */
-   for(l=left; l<=right; l++)
-      list[l] = sorted[l];
-}
-//
-void merge_sort(int list[], int left, int right)
-{  
-   int mid;
-   if(left<right){
-      mid = (left+right)/2;     /* 리스트의 균등 분할 */
-      merge_sort(list, left, mid);    /* 부분 리스트 정렬 */
-      merge_sort(list, mid+1, right); /* 부분 리스트 정렬 */
-	  merge(list, left, mid, right);    /* 합병 */
-   }
-}
+#endif
+#if 0
 
 int heap[MAX_SIZE+1];
 //
@@ -192,14 +142,14 @@ void heap_sort(int list[], int n)
 	   list[i]=heap[i+1];
 }
 #endif
-
+#if 0
 #define MAX_QUEUE_SIZE 100
 typedef int element;
 typedef struct {
 	element  queue[MAX_QUEUE_SIZE]; 
 	int  front, rear;
 } QueueType; 
-//
+
 void error(char *message)
 {
 	fprintf(stderr,"%s\n",message);
@@ -243,7 +193,7 @@ element peek(QueueType *q)
 		error("큐가 공백상태입니다");
 	return q->queue[(q->front+1) % MAX_QUEUE_SIZE];
 } 
-#if 0
+
 #define BUCKETS 10
 #define DIGITS  4
 void radix_sort(int list[], int n)
@@ -264,18 +214,4 @@ void radix_sort(int list[], int n)
 	}
 }
 #endif
-//
-void main()
-{  
-   int i;
-   n = MAX_SIZE;
-   for(i=0; i<n; i++)      	/* 난수 생성 및 출력 */
-   	  list[i] = rand()%n;/*난수 발생 범위 0~MAX_SIZE*/
-   
-   insertion_sort(list, n, ascend); /* 선택정렬 호출 */
-   for(i=0; i<n; i++)
-       printf("%d\n", list[i]);
-   insertion_sort(list, n, descend); /* 선택정렬 호출 */
-   for(i=0; i<n; i++)
-       printf("%d\n", list[i]);
-}
+

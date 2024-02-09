@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <windows.h> //windows.h 헤더 추가
+#pragma comment(lib, "Winmm.lib") //winmm.lib 추가
 
-#define	MAX_SIZE	10000000
+#define	MAX_SIZE	100000000
 int list[MAX_SIZE];
 
-// 오름차순으로 정렬된 배열 리스트의 순차탐색 
+//오름차순으로 정렬된 배열 리스트의 순차탐색 
 int sorted_seq_search(int key, int low, int high)
 {
 	int i;
@@ -15,8 +16,8 @@ int sorted_seq_search(int key, int low, int high)
 	}
 }
 
-//재귀 호출을 이용한 이진 탐색
-int search_binary(int key, int low, int high)
+//오름차순으로 정렬된 배열 리스트의 재귀 호출을 이용한 이진 탐색
+int search_binary1(int key, int low, int high)
 {
 	int middle;
 	if (low <= high) {
@@ -24,14 +25,14 @@ int search_binary(int key, int low, int high)
 		if (key == list[middle])    // 탐색 성공
 			return middle;
 		else if (key < list[middle]) // 왼쪽 부분리스트 탐색 
-			return search_binary(key, low, middle - 1);
+			return search_binary1(key, low, middle - 1);
 		else                   // 오른쪽 부분리스트 탐색 
-			return search_binary(key, middle + 1, high);
+			return search_binary1(key, middle + 1, high);
 	}
 	return -1;        // 탐색 실패
 }
 
-//반복을 이용한 이진 탐색
+//오름차순으로 정렬된 배열 리스트의 반복을 이용한 이진 탐색
 int search_binary2(int key, int low, int high)
 {
 	int middle;
@@ -51,34 +52,30 @@ int search_binary2(int key, int low, int high)
 
 int main()
 {
-	clock_t start;
+	unsigned __int64 start;
+	unsigned __int64 end;
 	int resultIndex;
 	int i;
 	for (i = 0; i < MAX_SIZE; i++) {
 		list[i] = i;
 	}
 
-	for (i = 0; i < MAX_SIZE; i++) {
-		list[i] = i;
-	}
-
-	for (i = 0; i < MAX_SIZE; i++) {
-		list[i] = i;
-	}
-
-	start = (int)clock();
-	resultIndex = sorted_seq_search(34, 0 , MAX_SIZE-1);
-	printf("%0.5f\n", (float)(clock() - start) / CLOCKS_PER_SEC);
+	start = GetTickCount64();
+	resultIndex = sorted_seq_search(90000000, 0 , MAX_SIZE-1);
+	end = GetTickCount64();
+	printf("%lld\n", end - start);
 	printf("%d\n", resultIndex);
 
-	start = (int)clock();
-	resultIndex = search_binary(34, 0, MAX_SIZE - 1);
-	printf("%0.5f\n", (float)(clock() - start) / CLOCKS_PER_SEC);
+	start = GetTickCount64();
+	resultIndex = search_binary1(90000000, 0, MAX_SIZE - 1);
+	end = GetTickCount64();
+	printf("%lld\n", end - start);
 	printf("%d\n", resultIndex);
 
-	start = (int)clock();
-	resultIndex = search_binary2(34, 0, MAX_SIZE - 1);
-	printf("%0.5f\n", (float)(clock() - start) / CLOCKS_PER_SEC);
+	start = GetTickCount64();
+	resultIndex = search_binary2(90000000, 0, MAX_SIZE - 1);
+	end = GetTickCount64();
+	printf("%lld\n", end - start);
 	printf("%d\n", resultIndex);
 
 	return 0;

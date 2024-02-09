@@ -145,6 +145,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap12_draw_tree_hor", "cha
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap06_Queue_Queue_Deque_Array", "chap06_Queue_Queue_Deque_Array\chap06_Queue_Queue_Deque_Array.vcxproj", "{62D41306-E054-43BA-94DF-1DF16008FFCF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chap09_merge_sort", "chap09_merge_sort\chap09_merge_sort.vcxproj", "{151FF475-D368-4180-8AEC-42BC205254DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -721,6 +723,14 @@ Global
 		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x64.Build.0 = Release|x64
 		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x86.ActiveCfg = Release|Win32
 		{62D41306-E054-43BA-94DF-1DF16008FFCF}.Release|x86.Build.0 = Release|Win32
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Debug|x64.ActiveCfg = Debug|x64
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Debug|x64.Build.0 = Debug|x64
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Debug|x86.ActiveCfg = Debug|Win32
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Debug|x86.Build.0 = Debug|Win32
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Release|x64.ActiveCfg = Release|x64
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Release|x64.Build.0 = Release|x64
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Release|x86.ActiveCfg = Release|Win32
+		{151FF475-D368-4180-8AEC-42BC205254DD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

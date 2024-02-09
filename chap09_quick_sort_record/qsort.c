@@ -76,7 +76,12 @@ void print()
 		printf("%s:%s\n", list[i].word, list[i].meaning);
 	}
 }
-//  
+
+void ClearLineFromReadBuffer(void)
+{
+	while (getchar() != '\n');
+}
+
 void main()
 {
 	char command;
@@ -84,14 +89,16 @@ void main()
 
 	do {
 		help();
-		command = getchar();
-		fflush(stdin);
+		scanf_s("%c", &command, 1);
+		ClearLineFromReadBuffer();
 		switch (command) {
 		case 'i':
 			printf("단어:");
-			gets(e.word);
+			fgets(e.word, sizeof(e.word), stdin);
+			e.word[strlen(e.word) - 1] = '\0';
 			printf("의미:");
-			gets(e.meaning);
+			fgets(e.meaning, sizeof(e.meaning), stdin);
+			e.meaning[strlen(e.meaning) - 1] = '\0';
 			insert(e);
 			break;
 		case 's':
